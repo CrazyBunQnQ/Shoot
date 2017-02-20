@@ -2,6 +2,7 @@ package com.crazybun.bean;
 
 /**
  * 奖励接口
+ * 
  * @author CrazyBun
  */
 public interface Award {
@@ -9,6 +10,7 @@ public interface Award {
 	public static final int TYPE_DOUBLE_FIRE = 1;
 	public static final int TYPE_DOUBLE_SPEED = 2;
 	public static final int TYPE_LIFE = 3;
+	
 	/**
 	 * 奖励总数
 	 */

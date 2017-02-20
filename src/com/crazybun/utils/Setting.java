@@ -32,6 +32,9 @@ public class Setting {
 	public static Image heroBullet;
 	public static Image enemyBullet;
 	public static Image awardPlane;
+	public static Image buff1;
+	public static Image buff2;
+	public static Image buff3;
 
 	// 图片数组
 	public static Image[] enemies;
@@ -56,11 +59,15 @@ public class Setting {
 	/**
 	 * 敌方子弹速度
 	 */
-	public static final int SPEED_ENEMY_BULLET = 2;
+	public static final int SPEED_ENEMY_BULLET = 3;
 	/*
 	 * 我方子弹速度
 	 */
-	public static final int SPEED_HERO_BULLET = 3;
+	public static final int SPEED_HERO_BULLET_MOVE = 6;
+	/**
+	 * 我方子弹发射频率（越小越快）
+	 */
+	public static final int SPEED_HERO_BULLET_CREATE = 16;
 	// 英雄飞机初始位置
 	public static final int HERO_INIT_X = FRAME_WIDTH / 2;
 	public static final int HERO_INIT_Y = FRAME_HEIGHT * 2 / 3;
@@ -71,12 +78,12 @@ public class Setting {
 	/**
 	 * 双倍攻击
 	 */
-	public static final int HERO_INIT_DOUBLE = 20;
+	public static final int HERO_INIT_DOUBLE = 0;
 
 	/**
 	 * 双倍射速
 	 */
-	public static final boolean HERO_INIT_FIRE_SPEED = false;
+	public static final int HERO_INIT_FIRE_SPEED = 0;
 
 	static {
 		backGround = new ImageIcon("images/backGround.gif").getImage();
@@ -92,5 +99,9 @@ public class Setting {
 		awardPlane = new ImageIcon("images/awardPlane.png").getImage();
 //		enemies = new Image[]{enemyPlane1,enemyPlane2};
 		heros = new Image[]{heroPlane1,heroPlane2};
+		buff1 = new ImageIcon("images/buff1.png").getImage();
+		buff2 = new ImageIcon("images/buff2.png").getImage();
+		buff3 = new ImageIcon("images/buff3.png").getImage();
+		
 	}
 }

@@ -27,7 +27,7 @@ public class Bullet extends FlyItems {
 		height = image.getHeight(null);
 		this.x = x;
 		this.y = y;
-		speed = isHero ? Setting.SPEED_HERO_BULLET : Setting.SPEED_ENEMY_BULLET;
+		speed = isHero ? Setting.SPEED_HERO_BULLET_MOVE : Setting.SPEED_ENEMY_BULLET;
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class Bullet extends FlyItems {
 		height = image.getHeight(null);
 		this.x = x;
 		this.y = y;
-		speed = Setting.SPEED_HERO_BULLET * 2;
+		speed = Setting.SPEED_HERO_BULLET_MOVE * 2;
 	}
 
 	public boolean isHero() {

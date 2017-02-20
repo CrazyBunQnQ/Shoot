@@ -13,7 +13,7 @@ public class HeroPlane extends FlyItems {
 	 */
 	private int life;
 	private int doubleFire;
-	private boolean doubleFireSpeed;
+	private int doubleFireSpeed;
 	private int planeImage = 0;
 
 	public HeroPlane() {
@@ -43,11 +43,11 @@ public class HeroPlane extends FlyItems {
 		this.doubleFire = doubleFire;
 	}
 
-	public boolean isDoubleFireSpeed() {
+	public int getDoubleFireSpeed() {
 		return doubleFireSpeed;
 	}
 
-	public void setDoubleFireSpeed(boolean doubleFireSpeed) {
+	public void setDoubleFireSpeed(int doubleFireSpeed) {
 		this.doubleFireSpeed = doubleFireSpeed;
 	}
 
@@ -64,8 +64,8 @@ public class HeroPlane extends FlyItems {
 	public void moveTo(int x, int y) {
 		this.x = x - width / 2;
 		this.y = y - height / 2;
-//		this.x = (x + this.x -width/2) / 2;
-//		this.y = (y + this.y - height/2) / 2;
+		// this.x = (x + this.x -width/2) / 2;
+		// this.y = (y + this.y - height/2) / 2;
 	}
 
 	/**
@@ -84,8 +84,10 @@ public class HeroPlane extends FlyItems {
 		if (this.doubleFire > 0) {
 			bs = new Bullet[2];
 			// 发射两颗子弹
-			Bullet b1 = doubleFireSpeed ? new Bullet(x - width, this.y - offset) : new Bullet(x - width*11/16 + width/2, this.y, true);
-			Bullet b2 = doubleFireSpeed ? new Bullet(x + width, this.y - offset) : new Bullet(x + width*11/16 + width/2, this.y, true);
+			Bullet b1 = this.doubleFireSpeed > 0 ? new Bullet(x - width * 11 / 16 + width / 2, this.y - offset)
+					: new Bullet(x - width * 11 / 16 + width / 2, this.y, true);
+			Bullet b2 = this.doubleFireSpeed > 0 ? new Bullet(x + width * 11 / 16 + width / 2, this.y - offset)
+					: new Bullet(x + width * 11 / 16 + width / 2, this.y, true);
 			bs[0] = b1;
 			bs[1] = b2;
 
@@ -93,8 +95,12 @@ public class HeroPlane extends FlyItems {
 		} else {
 			bs = new Bullet[1];
 			// 发射一颗子弹
-			Bullet b = doubleFireSpeed ? new Bullet(x, this.y - offset) : new Bullet(x + width/2, this.y - offset, true);
+			Bullet b = this.doubleFireSpeed > 0 ? new Bullet(x + width / 2, this.y - offset)
+					: new Bullet(x + width / 2, this.y - offset, true);
 			bs[0] = b;
+		}
+		if (this.doubleFireSpeed > 0) {
+			this.doubleFireSpeed -= 2;
 		}
 
 		return bs;
