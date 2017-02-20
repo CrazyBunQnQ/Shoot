@@ -227,10 +227,14 @@ public class MainPanel extends JPanel {
 					index++;
 				}
 			}
-//			System.out.println(bullets.length + bullets[bullets.length - 1].toString());
-			bullets = Arrays.copyOf(bullets, bullets.length + index);
-			System.arraycopy(bs, 0, bullets, bullets.length - index, index);
-//			System.out.println(bullets.length + bullets[bullets.length - 1].toString());
+			// System.out.println(bullets.length + bullets[bullets.length -
+			// 1].toString());
+			if (index > 0) {
+				bullets = Arrays.copyOf(bullets, bullets.length + index);
+				System.arraycopy(bs, 0, bullets, bullets.length - index, index);
+			}
+			// System.out.println(bullets.length + bullets[bullets.length -
+			// 1].toString());
 		}
 	}
 

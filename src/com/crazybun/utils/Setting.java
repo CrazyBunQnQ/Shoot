@@ -56,7 +56,7 @@ public class Setting {
 	/**
 	 * 敌方子弹速度
 	 */
-	public static final int SPEED_ENEMY_BULLET = 3;
+	public static final int SPEED_ENEMY_BULLET = 2;
 	/*
 	 * 我方子弹速度
 	 */
@@ -88,7 +88,7 @@ public class Setting {
 		enemyPlane1 = new ImageIcon("images/enemyPlane1.png").getImage();
 		enemyPlane2 = new ImageIcon("images/enemyPlane2.png").getImage();
 		heroBullet = new ImageIcon("images/heroBullet.png").getImage();
-		enemyBullet = new ImageIcon("images/emenyBullet.png").getImage();
+		enemyBullet = new ImageIcon("images/enemyBullet.png").getImage();
 		awardPlane = new ImageIcon("images/awardPlane.png").getImage();
 //		enemies = new Image[]{enemyPlane1,enemyPlane2};
 		heros = new Image[]{heroPlane1,heroPlane2};
