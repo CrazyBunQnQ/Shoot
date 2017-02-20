@@ -44,23 +44,23 @@ public abstract class FlyItems {
 
 	/**
 	 * 碰撞检测 检测两个物品是否相撞，如子弹与飞机，飞机与飞机，飞机与增益 return boolean
+	 * 
+	 * @param item
+	 *            另一个飞行物品
 	 */
 	public boolean collisionDetection(FlyItems item) {
 		boolean RlL = this.getRight() > item.getLeft();
 		boolean RsR = this.getRight() < item.getRight();
 		boolean TlT = this.getTop() > item.getTop();
 		boolean TsB = this.getTop() < item.getBottom();
-		if ( TsB) {
-			System.out.println("我： " + this.getTop() + "  item： " + item.getTop());
-//			System.out.println("右大于左： " + RlL + "  右小于右： " + RsR + "  是否碰撞： " + (RlL && RsR));
-			System.out.println("上大于上： " + TlT + "  上小于下： " + TsB + "  是否碰撞： " + (TlT && TsB));
-		}
-		boolean hitWithLeft = RlL && RsR && ((TlT && TsB) || (this.getBottom() > item.getTop() && this.getBottom() < item.getBottom()));
-		boolean hitWithRight = this.getLeft() > item.getLeft() && this.getLeft() < item.getRight() && ((this.getTop() > item.getTop() && this.getTop() < item.getBottom()) || (this.getBottom() > item.getTop() && this.getBottom() < item.getBottom()));
-//		System.out.println("左碰撞： " + hitWithLeft + "  右碰撞： " + hitWithRight + "  是否碰撞： " + (hitWithLeft || hitWithRight));
+		boolean LlL = this.getLeft() > item.getLeft();
+		boolean LsR = this.getLeft() < item.getRight();
+		boolean BlT = this.getBottom() > item.getTop();
+		boolean BsB = this.getBottom() < item.getBottom();
+
+		boolean hitWithLeft = RlL && RsR && ((TlT && TsB) || (BlT && BsB));
+		boolean hitWithRight = LlL && LsR && ((TlT && TsB) || (BlT && BsB));
 		return hitWithLeft || hitWithRight;
-		// this.getRight() > item.getLeft() && this.getTop() < item.getBottom()
-		// && this.getBottom() > item.getTop();
 	};
 
 	/**
@@ -69,7 +69,8 @@ public abstract class FlyItems {
 	 * @return boolean
 	 */
 	public boolean outOfBound() {
-		return this.getTop() - this.height * 2 > Setting.FRAME_HEIGHT || this.getBottom() + this.height * 2 < 0 || this.getLeft() - this.width * 2 > Setting.FRAME_WIDTH || this.getRight() + this.width * 2 < 0;
+		return this.getTop() - this.height * 2 > Setting.FRAME_HEIGHT || this.getBottom() + this.height * 2 < 0
+				|| this.getLeft() - this.width * 2 > Setting.FRAME_WIDTH || this.getRight() + this.width * 2 < 0;
 	}
 
 	/**
@@ -90,7 +91,7 @@ public abstract class FlyItems {
 	}
 
 	public int getBottom() {
-		return this.y - this.height / 2;
+		return this.y + this.height / 2;
 	}
 
 	public Image getImage() {
