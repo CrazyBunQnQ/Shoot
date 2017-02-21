@@ -32,6 +32,10 @@ public abstract class FlyItems {
 	 */
 	protected int height;
 	/**
+	 * 物品的碰撞面积
+	 */
+	protected int S;
+	/**
 	 * 物品的速度
 	 */
 	protected int speed;
@@ -49,14 +53,15 @@ public abstract class FlyItems {
 	 *            另一个飞行物品
 	 */
 	public boolean collisionDetection(FlyItems item) {
-		boolean RlL = this.getRight() > item.getLeft();
-		boolean RsR = this.getRight() < item.getRight();
-		boolean TlT = this.getTop() > item.getTop();
-		boolean TsB = this.getTop() < item.getBottom();
-		boolean LlL = this.getLeft() > item.getLeft();
-		boolean LsR = this.getLeft() < item.getRight();
-		boolean BlT = this.getBottom() > item.getTop();
-		boolean BsB = this.getBottom() < item.getBottom();
+		boolean RlL = this.getS() < item.getS() ? this.getRight() > item.getLeft() : item.getRight() > this.getLeft();
+		boolean RsR = this.getS() < item.getS() ? this.getRight() < item.getRight() : item.getRight() < this.getRight();
+		boolean TlT = this.getS() < item.getS() ? this.getTop() > item.getTop() : item.getTop() > this.getTop();
+		boolean TsB = this.getS() < item.getS() ? this.getTop() < item.getBottom() : item.getTop() < this.getBottom();
+		boolean LlL = this.getS() < item.getS() ? this.getLeft() > item.getLeft() : item.getLeft() > this.getLeft();
+		boolean LsR = this.getS() < item.getS() ? this.getLeft() < item.getRight() : item.getLeft() < this.getRight();
+		boolean BlT = this.getS() < item.getS() ? this.getBottom() > item.getTop() : item.getBottom() > this.getTop();
+		boolean BsB = this.getS() < item.getS() ? this.getBottom() < item.getBottom()
+				: item.getBottom() < this.getBottom();
 
 		boolean hitWithLeft = RlL && RsR && ((TlT && TsB) || (BlT && BsB));
 		boolean hitWithRight = LlL && LsR && ((TlT && TsB) || (BlT && BsB));
@@ -74,7 +79,7 @@ public abstract class FlyItems {
 	}
 
 	/**
-	 * 获取物品的左边界
+	 * 获取物品的左边框
 	 * 
 	 * @return int
 	 */
@@ -82,14 +87,29 @@ public abstract class FlyItems {
 		return this.x - this.width / 2;
 	}
 
+	/**
+	 * 获取物品的右边框
+	 * 
+	 * @return int
+	 */
 	public int getRight() {
 		return this.x + this.width / 2;
 	}
 
+	/**
+	 * 获取物品的上边框
+	 * 
+	 * @return int
+	 */
 	public int getTop() {
 		return this.y - this.height / 2;
 	}
 
+	/**
+	 * 获取物品的下边框
+	 * 
+	 * @return int
+	 */
 	public int getBottom() {
 		return this.y + this.height / 2;
 	}
@@ -124,5 +144,9 @@ public abstract class FlyItems {
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+
+	public int getS() {
+		return width * height;
 	}
 }
