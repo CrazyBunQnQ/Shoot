@@ -55,8 +55,8 @@ public class Buff extends FlyItems implements Award {
 	 */
 	@Override
 	public boolean outOfBound() {
-		backX = x < width / 2 ? false : (x > Setting.FRAME_WIDTH - width / 2 ? true : backX);
-		backY = y < height / 2 ? false : (y > Setting.FRAME_HEIGHT - height*2 ? true : backY);
+		backX = x < 0 ? false : (x > Setting.FRAME_WIDTH - width * 3 / 2 ? true : backX);
+		backY = y < 0 ? false : (y > Setting.FRAME_HEIGHT - height * 3 ? true : backY);
 		return false;
 	}
 

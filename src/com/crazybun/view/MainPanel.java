@@ -122,7 +122,7 @@ public class MainPanel extends JPanel {
 	 * @param g
 	 */
 	private void paintHero(Graphics g) {
-		g.drawImage(hero.getImage(), hero.getLeft(), hero.getTop(), this);
+		g.drawImage(hero.getImage(), hero.getX(), hero.getY(), this);
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class MainPanel extends JPanel {
 	private void paintPlanes(Graphics g) {
 		for (int i = 0; i < enemyPlanes.length; i++) {
 			FlyItems fi = enemyPlanes[i];
-			g.drawImage(fi.getImage(), fi.getLeft(), fi.getTop(), this);
+			g.drawImage(fi.getImage(), fi.getX(), fi.getY(), this);
 		}
 	}
 
@@ -145,7 +145,7 @@ public class MainPanel extends JPanel {
 	private void paintBullets(Graphics g) {
 		for (int i = 0; i < bullets.length; i++) {
 			Bullet bullet = bullets[i];
-			g.drawImage(bullet.getImage(), bullet.getLeft(), bullet.getTop(), this);
+			g.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), this);
 		}
 	}
 
@@ -157,7 +157,7 @@ public class MainPanel extends JPanel {
 	private void paintBuffs(Graphics g) {
 		for (int i = 0; i < buffs.length; i++) {
 			Buff buff = buffs[i];
-			g.drawImage(buff.getImage(), buff.getLeft(), buff.getTop(), this);
+			g.drawImage(buff.getImage(), buff.getX(), buff.getY(), this);
 		}
 	}
 
@@ -380,7 +380,7 @@ public class MainPanel extends JPanel {
 				isHit = bullet.collisionDetection(ep);
 				if (isHit) {
 					if (ep.isPowerfulPlane()) {
-						Buff buff = new Buff(ep.getLeft(), ep.getTop());
+						Buff buff = new Buff((ep.getLeft() + ep.getRight()) / 2, (ep.getTop() + ep.getBottom()) / 2);
 						buffs = Arrays.copyOf(buffs, buffs.length + 1);
 						buffs[buffs.length - 1] = buff;
 					}

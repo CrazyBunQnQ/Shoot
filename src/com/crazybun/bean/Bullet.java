@@ -25,7 +25,7 @@ public class Bullet extends FlyItems {
 		image = isHero ? Setting.heroBullet : Setting.enemyBullet;
 		width = image.getWidth(null);
 		height = image.getHeight(null);
-		this.x = x;
+		this.x = x - width / 2;
 		this.y = y;
 		speed = isHero ? Setting.SPEED_HERO_BULLET_MOVE : Setting.SPEED_ENEMY_BULLET;
 	}

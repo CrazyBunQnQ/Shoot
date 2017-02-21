@@ -18,10 +18,12 @@ public class HeroPlane extends FlyItems {
 
 	public HeroPlane() {
 		image = Setting.heroPlane1;
-		width = image.getWidth(null) / 2;
-		height = image.getHeight(null) / 2;
-		x = Setting.HERO_INIT_X - width / 2;
-		y = Setting.HERO_INIT_Y;
+		width = image.getWidth(null) / 4;
+		height = image.getHeight(null) / 4;
+		System.out.println(image.getWidth(null) + "  " + image.getHeight(null));
+		x = Setting.HERO_INIT_X - image.getWidth(null) / 2;
+		y = Setting.HERO_INIT_Y - image.getHeight(null) / 2;
+		System.out.println(x + " " + y);
 		life = Setting.HERO_INIT_LIFE;
 		doubleFire = Setting.HERO_INIT_DOUBLE;
 		doubleFireSpeed = Setting.HERO_INIT_FIRE_SPEED;
@@ -62,10 +64,8 @@ public class HeroPlane extends FlyItems {
 	}
 
 	public void moveTo(int x, int y) {
-		this.x = x - width / 2;
-		this.y = y - height / 2;
-		// this.x = (x + this.x -width/2) / 2;
-		// this.y = (y + this.y - height/2) / 2;
+		this.x = x - this.image.getWidth(null) / 2;
+		this.y = y - this.image.getHeight(null) / 2;
 	}
 
 	/**
@@ -84,10 +84,12 @@ public class HeroPlane extends FlyItems {
 		if (this.doubleFire > 0) {
 			bs = new Bullet[2];
 			// 发射两颗子弹
-			Bullet b1 = this.doubleFireSpeed > 0 ? new Bullet(x - width * 11 / 16 + width / 2, this.y - offset)
-					: new Bullet(x - width * 11 / 16 + width / 2, this.y, true);
-			Bullet b2 = this.doubleFireSpeed > 0 ? new Bullet(x + width * 11 / 16 + width / 2, this.y - offset)
-					: new Bullet(x + width * 11 / 16 + width / 2, this.y, true);
+			Bullet b1 = this.doubleFireSpeed > 0
+					? new Bullet(x + image.getWidth(null) / 2 - width * 11 / 16 + width / 2, this.y - offset)
+					: new Bullet(x + image.getWidth(null) / 2 - width * 4 / 3, this.y + offset, true);
+			Bullet b2 = this.doubleFireSpeed > 0
+					? new Bullet(x + image.getWidth(null) / 2 + width * 11 / 16 + width / 2, this.y - offset)
+					: new Bullet(x + image.getWidth(null) / 2 + width * 4 / 3, this.y + offset, true);
 			bs[0] = b1;
 			bs[1] = b2;
 
@@ -95,8 +97,8 @@ public class HeroPlane extends FlyItems {
 		} else {
 			bs = new Bullet[1];
 			// 发射一颗子弹
-			Bullet b = this.doubleFireSpeed > 0 ? new Bullet(x + width / 2, this.y - offset)
-					: new Bullet(x + width / 2, this.y - offset, true);
+			Bullet b = this.doubleFireSpeed > 0 ? new Bullet(x + image.getWidth(null) / 2, this.y - offset)
+					: new Bullet(x + image.getWidth(null) / 2, this.y - offset, true);
 			bs[0] = b;
 		}
 		if (this.doubleFireSpeed > 0) {

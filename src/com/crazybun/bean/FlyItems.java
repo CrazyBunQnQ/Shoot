@@ -78,13 +78,21 @@ public abstract class FlyItems {
 				|| this.getLeft() - this.width * 2 > Setting.FRAME_WIDTH || this.getRight() + this.width * 2 < 0;
 	}
 
+	public int getX() {
+		return this.x;
+	}
+	
+	public int getY() {
+		return this.y;
+	}
+	
 	/**
 	 * 获取物品的左边框
 	 * 
 	 * @return int
 	 */
 	public int getLeft() {
-		return this.x - this.width / 2;
+		return this.x + this.image.getWidth(null) / 2 - this.width / 2;
 	}
 
 	/**
@@ -93,7 +101,7 @@ public abstract class FlyItems {
 	 * @return int
 	 */
 	public int getRight() {
-		return this.x + this.width / 2;
+		return this.x + this.image.getWidth(null) / 2 + this.width / 2;
 	}
 
 	/**
@@ -102,7 +110,7 @@ public abstract class FlyItems {
 	 * @return int
 	 */
 	public int getTop() {
-		return this.y - this.height / 2;
+		return this.y + this.image.getHeight(null) / 2 - this.height / 2;
 	}
 
 	/**
@@ -111,39 +119,15 @@ public abstract class FlyItems {
 	 * @return int
 	 */
 	public int getBottom() {
-		return this.y + this.height / 2;
+		return this.y + this.image.getHeight(null) / 2 + this.height / 2;
 	}
 
 	public Image getImage() {
 		return image;
 	}
 
-	public void setImage(Image image) {
-		this.image = image;
-	}
-
 	public int getSpeed() {
 		return speed;
-	}
-
-	public void setSpeed(int speed) {
-		this.speed = speed;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
 	}
 
 	public int getS() {

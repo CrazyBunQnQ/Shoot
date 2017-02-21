@@ -30,7 +30,7 @@ public class EnemyPlane extends FlyItems implements Enemy {
 		image = hasBuff ? Setting.awardPlane : Setting.enemyPlane1;
 		width = image.getWidth(null);
 		height = image.getHeight(null);
-		x = width / 2 + Setting.RND.nextInt(Setting.FRAME_WIDTH - width);
+		x = Setting.RND.nextInt(Setting.FRAME_WIDTH - width);
 		y = -height;
 		speed = hasBuff ? Setting.SPEED_AWARDPLANE : Setting.SPEED_ENEMYPLANE;
 		score = hasBuff ? Enemy.ENEMY_HIGH_SCORE : Enemy.ENEMY_NORMAL_SCORE;
@@ -49,7 +49,7 @@ public class EnemyPlane extends FlyItems implements Enemy {
 
 	@Override
 	public boolean outOfBound() {
-		backX = x < width / 2 ? false : (x > Setting.FRAME_WIDTH - width / 2 ? true : backX);
+		backX = x < 0 ? false : (x > Setting.FRAME_WIDTH - width ? true : backX);
 		return super.outOfBound();
 	}
 
@@ -59,7 +59,7 @@ public class EnemyPlane extends FlyItems implements Enemy {
 	 * @return
 	 */
 	public Bullet shootBullet() {
-		return new Bullet(x, this.y + height / 2, false);
+		return new Bullet(x + width / 2, this.y + height / 2, false);
 	}
 
 	public int getScore() {
