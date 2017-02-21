@@ -27,10 +27,15 @@ public class MainFrame {
 		// 设置关闭窗口的同时关闭后台进程
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		/**
+		 * 画板对象，用来显示游戏画面
+		 */
 		MainPanel mp = new MainPanel();
 
+		//在主窗口种添加画板对象
 		frame.add(mp);
 		frame.setVisible(true);
+		//运行画板
 		mp.run();
 		// System.out.println(10/5%2);
 	}

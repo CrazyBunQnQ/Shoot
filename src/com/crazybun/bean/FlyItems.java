@@ -78,16 +78,26 @@ public abstract class FlyItems {
 				|| this.getLeft() - this.width * 2 > Setting.FRAME_WIDTH || this.getRight() + this.width * 2 < 0;
 	}
 
+	/**
+	 * 获取左上角x坐标 此坐标为图片的左上角x坐标，并非是碰撞体积的
+	 * 
+	 * @return int
+	 */
 	public int getX() {
 		return this.x;
 	}
-	
+
+	/**
+	 * 获取左上角y坐标，此坐标为图片的左上角y坐标，并非是碰撞体积的
+	 * 
+	 * @return int
+	 */
 	public int getY() {
 		return this.y;
 	}
-	
+
 	/**
-	 * 获取物品的左边框
+	 * 获取物品的左边框位置 ，等同于获取物品碰撞体积的左上角坐标x的值
 	 * 
 	 * @return int
 	 */
@@ -96,7 +106,7 @@ public abstract class FlyItems {
 	}
 
 	/**
-	 * 获取物品的右边框
+	 * 获取物品的右边框位置，等同于获取物品碰撞体积的右下角坐标x的值
 	 * 
 	 * @return int
 	 */
@@ -105,7 +115,7 @@ public abstract class FlyItems {
 	}
 
 	/**
-	 * 获取物品的上边框
+	 * 获取物品的上边框位置，等同于获取物品碰撞体积的左上角坐标y的值
 	 * 
 	 * @return int
 	 */
@@ -114,7 +124,7 @@ public abstract class FlyItems {
 	}
 
 	/**
-	 * 获取物品的下边框
+	 * 获取物品的下边框位置，等同于获取物品碰撞体积的右下角坐标y的值
 	 * 
 	 * @return int
 	 */
@@ -122,14 +132,29 @@ public abstract class FlyItems {
 		return this.y + this.image.getHeight(null) / 2 + this.height / 2;
 	}
 
+	/**
+	 * 获取资源图片
+	 * 
+	 * @return Image
+	 */
 	public Image getImage() {
 		return image;
 	}
 
+	/**
+	 * 获取物品移动速度
+	 * 
+	 * @return int
+	 */
 	public int getSpeed() {
 		return speed;
 	}
 
+	/**
+	 * 获取物品碰撞面积
+	 * 
+	 * @return int
+	 */
 	public int getS() {
 		return width * height;
 	}

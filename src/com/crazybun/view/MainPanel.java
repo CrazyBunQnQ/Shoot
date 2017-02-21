@@ -441,6 +441,9 @@ public class MainPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * 获取buff事件
+	 */
 	protected void getBuffAction() {
 		for (int i = 0; i < buffs.length; i++) {
 			Buff buff = buffs[i];

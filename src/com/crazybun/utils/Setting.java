@@ -85,6 +85,9 @@ public class Setting {
 	 */
 	public static final int HERO_INIT_FIRE_SPEED = 0;
 
+	/**
+	 * 静态代码块，只执行一次
+	 */
 	static {
 		backGround = new ImageIcon("images/backGround.gif").getImage();
 		gameStart = new ImageIcon("images/gameStart.png").getImage();

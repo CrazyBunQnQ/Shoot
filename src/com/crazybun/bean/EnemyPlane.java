@@ -16,8 +16,15 @@ public class EnemyPlane extends FlyItems implements Enemy {
 	 * 敌方飞机的分数
 	 */
 	private int score;
+	/**
+	 * 敌方飞机移动方向，是否返回
+	 */
 	private boolean backX;
-	// private int planeImage = 0;
+
+	/**
+	 * 敌方飞机的生命值
+	 */
+	private int life;
 
 	/**
 	 * 敌方飞机
@@ -37,6 +44,9 @@ public class EnemyPlane extends FlyItems implements Enemy {
 		this.backX = Math.random() < 0.5f ? true : false;
 	}
 
+	/**
+	 * 敌方飞机的移动方式
+	 */
 	@Override
 	public void move() {
 		if (powerfulPlane) {
@@ -47,6 +57,9 @@ public class EnemyPlane extends FlyItems implements Enemy {
 		y += speed;
 	}
 
+	/**
+	 * 重写越界检测
+	 */
 	@Override
 	public boolean outOfBound() {
 		backX = x < 0 ? false : (x > Setting.FRAME_WIDTH - width ? true : backX);
@@ -56,16 +69,26 @@ public class EnemyPlane extends FlyItems implements Enemy {
 	/**
 	 * 敌机发射子弹
 	 * 
-	 * @return
+	 * @return Bullet
 	 */
 	public Bullet shootBullet() {
 		return new Bullet(x + width / 2, this.y + height / 2, false);
 	}
 
+	/**
+	 * 获取分数
+	 * 
+	 * @return int
+	 */
 	public int getScore() {
 		return score;
 	}
 
+	/**
+	 * 是否为强力飞机
+	 * 
+	 * @return boolean
+	 */
 	public boolean isPowerfulPlane() {
 		return powerfulPlane;
 	}

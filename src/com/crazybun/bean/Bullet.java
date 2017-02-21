@@ -49,12 +49,17 @@ public class Bullet extends FlyItems {
 		speed = Setting.SPEED_HERO_BULLET_MOVE * 2;
 	}
 
+	/**
+	 * 是否是英雄飞机的子弹
+	 * 
+	 * @return boolean
+	 */
 	public boolean isHero() {
 		return isHero;
 	}
 
 	/**
-	 * 子弹移动
+	 * 子弹移动方式
 	 */
 	@Override
 	public void move() {

@@ -44,6 +44,9 @@ public class Buff extends FlyItems implements Award {
 		this.backY = Math.random() < 0.5f ? true : false;
 	}
 
+	/**
+	 * buff的移动方式
+	 */
 	@Override
 	public void move() {
 		x = backX ? x - speed : x + speed;
@@ -60,6 +63,11 @@ public class Buff extends FlyItems implements Award {
 		return false;
 	}
 
+	/**
+	 * 获取buff类型
+	 * 
+	 * @return int
+	 */
 	public int getType() {
 		return type;
 	}
