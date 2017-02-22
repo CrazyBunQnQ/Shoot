@@ -135,10 +135,10 @@ public class HeroPlane extends FlyItems {
 			bs = new Bullet[2];
 			// 发射两颗子弹
 			Bullet b1 = this.doubleFireSpeed > 0
-					? new Bullet(x + image.getWidth(null) / 2 - width * 11 / 16 + width / 2, this.y - offset)
+					? new Bullet(x + image.getWidth(null) / 2 - width * 4 / 3, this.y - offset)
 					: new Bullet(x + image.getWidth(null) / 2 - width * 4 / 3, this.y + offset, true);
 			Bullet b2 = this.doubleFireSpeed > 0
-					? new Bullet(x + image.getWidth(null) / 2 + width * 11 / 16 + width / 2, this.y - offset)
+					? new Bullet(x + image.getWidth(null) / 2 + width * 4 / 3, this.y - offset)
 					: new Bullet(x + image.getWidth(null) / 2 + width * 4 / 3, this.y + offset, true);
 			bs[0] = b1;
 			bs[1] = b2;

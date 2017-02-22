@@ -78,7 +78,7 @@ public class Setting {
 	/**
 	 * 双倍攻击
 	 */
-	public static final int HERO_INIT_DOUBLE = 60;
+	public static final int HERO_INIT_DOUBLE = 0;
 
 	/**
 	 * 双倍射速
