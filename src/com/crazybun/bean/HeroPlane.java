@@ -23,10 +23,8 @@ public class HeroPlane extends FlyItems {
 		image = Setting.heroPlane1;
 		width = image.getWidth(null) / 4;
 		height = image.getHeight(null) / 4;
-		System.out.println(image.getWidth(null) + "  " + image.getHeight(null));
 		x = Setting.HERO_INIT_X - image.getWidth(null) / 2;
 		y = Setting.HERO_INIT_Y - image.getHeight(null) / 2;
-		System.out.println(x + " " + y);
 		life = Setting.HERO_INIT_LIFE;
 		doubleFire = Setting.HERO_INIT_DOUBLE;
 		doubleFireSpeed = Setting.HERO_INIT_FIRE_SPEED;
