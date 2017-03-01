@@ -403,11 +403,13 @@ public class MainPanel extends JPanel {
 				if (isHit) {
 					ep.subLife(bullet.damage);
 					if (ep.getLife() <= 0) {
-						if (ep.getPlaneType() == 0) {
+						if (ep.getPlaneType() == 0) {//击杀奖励飞机生成buff
 							Buff buff = new Buff((ep.getLeft() + ep.getRight()) / 2,
 									(ep.getTop() + ep.getBottom()) / 2);
 							buffs = Arrays.copyOf(buffs, buffs.length + 1);
 							buffs[buffs.length - 1] = buff;
+						} else if (ep.getPlaneType() == 3){//击杀boss增加一条命
+							hero.addLife(1);
 						}
 						deletePlanes(i);
 					}
