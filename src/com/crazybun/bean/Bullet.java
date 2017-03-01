@@ -8,7 +8,14 @@ import com.crazybun.utils.Setting;
  * @author CrazyBun
  */
 public class Bullet extends FlyItems {
-	private boolean isHero;
+	/**
+	 * 是否来自英雄
+	 */
+	private boolean byHero;
+	/**
+	 * 子弹的伤害值
+	 */
+	public int damage = 1;
 
 	/**
 	 * 子弹
@@ -17,17 +24,17 @@ public class Bullet extends FlyItems {
 	 *            初始x坐标
 	 * @param y
 	 *            初始y坐标
-	 * @param isHero
+	 * @param byHero
 	 *            是否为英雄飞机的子弹
 	 */
-	public Bullet(int x, int y, boolean isHero) {
-		this.isHero = isHero;
-		image = isHero ? Setting.heroBullet : Setting.enemyBullet;
+	public Bullet(int x, int y, boolean byHero) {
+		this.byHero = byHero;
+		image = byHero ? Setting.heroBullet : Setting.enemyBullet;
 		width = image.getWidth(null);
 		height = image.getHeight(null);
 		this.x = x - width / 2;
 		this.y = y;
-		speed = isHero ? Setting.SPEED_HERO_BULLET_MOVE : Setting.SPEED_ENEMY_BULLET;
+		speed = byHero ? Setting.SPEED_HERO_BULLET_MOVE : Setting.SPEED_ENEMY_BULLET;
 	}
 
 	/**
@@ -40,7 +47,7 @@ public class Bullet extends FlyItems {
 	 */
 	public Bullet(int x, int y) {
 		// TODO 为何不可以这样调用 Bullet(x, y, true);
-		this.isHero = true;
+		this.byHero = true;
 		image = Setting.heroBullet;
 		width = image.getWidth(null);
 		height = image.getHeight(null);
@@ -55,7 +62,7 @@ public class Bullet extends FlyItems {
 	 * @return boolean
 	 */
 	public boolean isHero() {
-		return isHero;
+		return byHero;
 	}
 
 	/**
@@ -63,7 +70,7 @@ public class Bullet extends FlyItems {
 	 */
 	@Override
 	public void move() {
-		if (isHero) {
+		if (byHero) {
 			y -= speed;
 		} else {
 			y += speed;

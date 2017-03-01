@@ -9,39 +9,61 @@ import com.crazybun.utils.Setting;
  */
 public class EnemyPlane extends FlyItems implements Enemy {
 	/**
-	 * 敌方飞机类型，是否是强力飞机
+	 * 敌方飞机类型，0：奖励飞机， 1 小飞机，2中型飞机，3Boss飞机
 	 */
-	private boolean powerfulPlane;
+	private int planeType;
 	/**
 	 * 敌方飞机的分数
 	 */
 	private int score;
 	/**
-	 * 敌方飞机移动方向，是否返回
+	 * 敌方飞水平机移动方向，是否返回
 	 */
 	private boolean backX;
-
 	/**
-	 * 敌方飞机的生命值
+	 * 敌方飞机垂直移动方向，是否返回
 	 */
-	private int life;
+	private boolean backY;
 
 	/**
-	 * 敌方飞机
+	 * 构造敌方飞机
 	 * 
-	 * @param hasBuff
-	 *            飞机是否包含buff
+	 * @param type
+	 *            飞机的类型：0：奖励飞机， 1 小飞机，2中型飞机，3Boss飞机
 	 */
-	public EnemyPlane(boolean hasBuff) {
-		this.powerfulPlane = hasBuff;
-		image = hasBuff ? Setting.awardPlane : Setting.enemyPlane1;
+	public EnemyPlane(int type, int life) {
+		this.planeType = type;
+		switch (planeType) {
+		case 0:
+			image = Setting.awardPlane;
+			speed = Setting.SPEED_AWARDPLANE;
+			score = Enemy.ENEMY_AWARD_SCORE;
+			break;
+		case 1:
+			image = Setting.smallPlane;
+			speed = Setting.SPEED_ENEMYPLANE;
+			score = Enemy.ENEMY_SMALL_SCORE;
+			break;
+		case 2:
+			image = Setting.midPlane;
+			speed = Setting.SPEED_ENEMYPLANE;
+			score = Enemy.ENEMY_NORMAL_SCORE;
+			break;
+		case 3:
+			image = Setting.bossPlane;
+			speed = Setting.SPEED_BOSSPLANE;
+			score = Enemy.ENEMY_BOSS_SCORE;
+			break;
+		default:
+			break;
+		}
 		width = image.getWidth(null);
 		height = image.getHeight(null);
 		x = Setting.RND.nextInt(Setting.FRAME_WIDTH - width);
 		y = -height;
-		speed = hasBuff ? Setting.SPEED_AWARDPLANE : Setting.SPEED_ENEMYPLANE;
-		score = hasBuff ? Enemy.ENEMY_HIGH_SCORE : Enemy.ENEMY_NORMAL_SCORE;
 		this.backX = Math.random() < 0.5f ? true : false;
+		this.backY = false;
+		this.life = life;
 	}
 
 	/**
@@ -49,12 +71,15 @@ public class EnemyPlane extends FlyItems implements Enemy {
 	 */
 	@Override
 	public void move() {
-		if (powerfulPlane) {
+		if (planeType == 3) {//Boss飞机移动方式
 			x = backX ? x - speed : x + speed;
-			// } else {
-			// image = Setting.enemies[planeImage++ % 2];
+			y = backY ? y - speed : y + speed;
+		} else if (planeType == 2) {//中等飞机移动方式
+			x = backX ? x - speed : x + speed;
+			y += speed;
+		} else {//其他飞机移动方式
+			y += speed;
 		}
-		y += speed;
 	}
 
 	/**
@@ -72,7 +97,13 @@ public class EnemyPlane extends FlyItems implements Enemy {
 	 * @return Bullet
 	 */
 	public Bullet shootBullet() {
-		return new Bullet(x + width / 2, this.y + height / 2, false);
+		if (planeType == 2) {//中等飞机发射子弹方式
+			return new Bullet(x + width / 2, this.y + height / 2, false);
+		}
+		if (planeType == 3) {//Boss飞机发射子弹方式
+//			return new Bullet(x + width / 2, this.y + height / 2, false);
+		}
+		return null;
 	}
 
 	/**
@@ -85,11 +116,11 @@ public class EnemyPlane extends FlyItems implements Enemy {
 	}
 
 	/**
-	 * 是否为强力飞机
+	 * 获取敌机类型
 	 * 
-	 * @return boolean
+	 * @return int
 	 */
-	public boolean isPowerfulPlane() {
-		return powerfulPlane;
+	public int getPlaneType() {
+		return planeType;
 	}
 }

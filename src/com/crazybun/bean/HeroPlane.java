@@ -8,10 +8,6 @@ import com.crazybun.utils.Setting;
  * @author CrazyBun
  */
 public class HeroPlane extends FlyItems {
-	/**
-	 * 生命
-	 */
-	private int life;
 	private int doubleFire;
 	private int doubleFireSpeed;
 	private int planeImage = 0;
@@ -26,27 +22,8 @@ public class HeroPlane extends FlyItems {
 		x = Setting.HERO_INIT_X - image.getWidth(null) / 2;
 		y = Setting.HERO_INIT_Y - image.getHeight(null) / 2;
 		life = Setting.HERO_INIT_LIFE;
-		doubleFire = Setting.HERO_INIT_DOUBLE;
-		doubleFireSpeed = Setting.HERO_INIT_FIRE_SPEED;
-	}
-
-	/**
-	 * 获取英雄飞机的生命值
-	 * 
-	 * @return int
-	 */
-	public int getLife() {
-		return life;
-	}
-
-	/**
-	 * 设置英雄飞机的生命值
-	 * 
-	 * @param life
-	 *            想要设置的生命值，整数类型
-	 */
-	public void setLife(int life) {
-		this.life = life;
+		doubleFire = 0;
+		doubleFireSpeed = 0;
 	}
 
 	/**
@@ -64,8 +41,8 @@ public class HeroPlane extends FlyItems {
 	 * @param doubleFire
 	 *            想要设置的时间，整数类型
 	 */
-	public void setDoubleFire(int doubleFire) {
-		this.doubleFire = doubleFire;
+	public void addDoubleFire(int doubleFire) {
+		this.doubleFire += doubleFire;
 	}
 
 	/**
@@ -83,8 +60,8 @@ public class HeroPlane extends FlyItems {
 	 * @param doubleFireSpeed
 	 *            想要设置的时间，整数类型
 	 */
-	public void setDoubleFireSpeed(int doubleFireSpeed) {
-		this.doubleFireSpeed = doubleFireSpeed;
+	public void addDoubleFireSpeed(int doubleFireSpeed) {
+		this.doubleFireSpeed += doubleFireSpeed;
 	}
 
 	/**
@@ -100,7 +77,7 @@ public class HeroPlane extends FlyItems {
 	 */
 	@Override
 	public void move() {
-		image = Setting.heros[planeImage++ % 2];
+		image = Setting.heros_normal[planeImage++ % 2];
 	}
 
 	/**
@@ -164,12 +141,5 @@ public class HeroPlane extends FlyItems {
 	 */
 	public void addLife(int addNum) {
 		this.life += addNum;
-	}
-
-	/**
-	 * 英雄飞机的生命值-1
-	 */
-	public void subLife() {
-		this.life--;
 	}
 }

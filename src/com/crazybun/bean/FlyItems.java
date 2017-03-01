@@ -39,6 +39,10 @@ public abstract class FlyItems {
 	 * 物品的速度
 	 */
 	protected int speed;
+	/**
+	 * 物品的生命值
+	 */
+	protected int life;
 
 	// abstract静态变量或方法，在当前类中不设置具体的值或方法体，由子类来实现
 	/**
@@ -150,6 +154,22 @@ public abstract class FlyItems {
 		return speed;
 	}
 
+//	/**
+//	 * 设置物品的生命值
+//	 * 
+//	 * @param life
+//	 */
+//	public void setLife(int life) {
+//		this.life = life;
+//	}
+
+	/**
+	 * 获取物品的生命值
+	 */
+	public int getLife() {
+		return life;
+	}
+
 	/**
 	 * 获取物品碰撞面积
 	 * 
@@ -157,5 +177,12 @@ public abstract class FlyItems {
 	 */
 	public int getS() {
 		return width * height;
+	}
+	
+	/**
+	 * 减少物品的生命值
+	 */
+	public void subLife(int n) {
+		this.life -= n;
 	}
 }

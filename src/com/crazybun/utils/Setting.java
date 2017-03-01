@@ -26,9 +26,9 @@ public class Setting {
 	public static Image gameOver;
 	public static Image gamePause;
 	public static Image heroPlane1;
-	public static Image heroPlane2;
-	public static Image enemyPlane1;
-	public static Image enemyPlane2;
+	public static Image smallPlane;
+	public static Image midPlane;
+	public static Image bossPlane;
 	public static Image heroBullet;
 	public static Image enemyBullet;
 	public static Image awardPlane;
@@ -37,13 +37,27 @@ public class Setting {
 	public static Image buff3;
 
 	// 图片数组
-	public static Image[] enemies;
-	public static Image[] heros;
+	public static Image[] smallDeath;
+	public static Image[] midDeath;
+	public static Image[] bossDeath;
+	public static Image[] heros_normal;
+	public static Image[] heros_death;
+	
 
+	
+	//=========================常量======================
+	/**
+	 * 游戏难度提升分段，每DIFFICULTY分提升一个难度
+	 */
+	public static final int DIFFICULTY = 100;
 	/**
 	 * 随机数
 	 */
 	public static final Random RND = new Random();
+	/**
+	 * Boss飞机速度
+	 */
+	public static final int SPEED_BOSSPLANE = 1;
 	/**
 	 * 敌方飞机速度
 	 */
@@ -51,7 +65,7 @@ public class Setting {
 	/**
 	 * 奖励飞机速度
 	 */
-	public static final int SPEED_AWARDPLANE = 2;
+	public static final int SPEED_AWARDPLANE = 3;
 	/**
 	 * buff速度
 	 */
@@ -67,7 +81,11 @@ public class Setting {
 	/**
 	 * 我方子弹发射频率（越小越快）
 	 */
-	public static final int SPEED_HERO_BULLET_CREATE = 16;
+	public static final int SPEED_HERO_BULLET_CREATE = 15;
+	/**
+	 * 敌方飞机子弹发射频率（越小越快）
+	 */
+	public static final int SPEED_ENEMY_BULLET_CREATE = 50;
 	// 英雄飞机初始位置
 	public static final int HERO_INIT_X = FRAME_WIDTH / 2;
 	public static final int HERO_INIT_Y = FRAME_HEIGHT * 2 / 3;
@@ -78,12 +96,12 @@ public class Setting {
 	/**
 	 * 双倍攻击
 	 */
-	public static final int HERO_INIT_DOUBLE = 0;
+	public static final int HERO_INIT_DOUBLE = 100;
 
 	/**
 	 * 双倍射速
 	 */
-	public static final int HERO_INIT_FIRE_SPEED = 0;
+	public static final int HERO_INIT_FIRE_SPEED = 100;
 
 	/**
 	 * 静态代码块，只执行一次
@@ -94,17 +112,48 @@ public class Setting {
 		gameOver = new ImageIcon("images/gameOver.png").getImage();
 		gamePause = new ImageIcon("images/pause.png").getImage();
 		heroPlane1 = new ImageIcon("images/heroPlane1.png").getImage();
-		heroPlane2 = new ImageIcon("images/heroPlane2.png").getImage();
-		enemyPlane1 = new ImageIcon("images/enemyPlane1.png").getImage();
-		enemyPlane2 = new ImageIcon("images/enemyPlane2.png").getImage();
+		smallPlane = new ImageIcon("images/smallPlane1.png").getImage();
+		midPlane = new ImageIcon("images/midPlane1.png").getImage();
+		bossPlane = new ImageIcon("images/bossPlane1.png").getImage();
 		heroBullet = new ImageIcon("images/heroBullet.png").getImage();
 		enemyBullet = new ImageIcon("images/enemyBullet.png").getImage();
 		awardPlane = new ImageIcon("images/awardPlane.png").getImage();
-//		enemies = new Image[]{enemyPlane1,enemyPlane2};
-		heros = new Image[]{heroPlane1,heroPlane2};
 		buff1 = new ImageIcon("images/buff1.png").getImage();
 		buff2 = new ImageIcon("images/buff2.png").getImage();
-		buff3 = new ImageIcon("images/buff3.png").getImage();
+//		buff3 = new ImageIcon("images/buff3.png").getImage();
+		smallDeath = new Image[]{
+				smallPlane, 
+				new ImageIcon("images/smallPlane2.png").getImage(),
+				new ImageIcon("images/smallPlane3.png").getImage(),
+				new ImageIcon("images/smallPlane4.png").getImage(),
+				new ImageIcon("images/smallPlane5.png").getImage()
+				};
+		midDeath = new Image[]{
+				midPlane,
+				new ImageIcon("images/midPlane2.png").getImage(),
+				new ImageIcon("images/midPlane3.png").getImage(),
+				new ImageIcon("images/midPlane4.png").getImage(),
+				new ImageIcon("images/midPlane5.png").getImage(),
+				new ImageIcon("images/midPlane6.png").getImage()
+		};
+		bossDeath = new Image[]{
+				bossPlane,
+				new ImageIcon("images/midPlane2.png").getImage(),
+				new ImageIcon("images/midPlane3.png").getImage(),
+				new ImageIcon("images/midPlane4.png").getImage(),
+				new ImageIcon("images/midPlane5.png").getImage(),
+				new ImageIcon("images/midPlane6.png").getImage(),
+				new ImageIcon("images/midPlane7.png").getImage(),
+				new ImageIcon("images/midPlane8.png").getImage(),
+				new ImageIcon("images/midPlane9.png").getImage()
+		};
+		heros_normal = new Image[]{heroPlane1,new ImageIcon("images/heroPlane2.png").getImage()};
+		heros_death = new Image[]{
+				new ImageIcon("images/heroDeath1.png").getImage(),
+				new ImageIcon("images/heroDeath2.png").getImage(),
+				new ImageIcon("images/heroDeath3.png").getImage(),
+				new ImageIcon("images/heroDeath4.png").getImage()
+		};
 		
 	}
 }

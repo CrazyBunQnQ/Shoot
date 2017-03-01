@@ -144,8 +144,9 @@ public class MainPanel extends JPanel {
 	 */
 	private void paintBullets(Graphics g) {
 		for (int i = 0; i < bullets.length; i++) {
-			Bullet bullet = bullets[i];
-			g.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), this);
+			if (bullets[i] != null) {
+				g.drawImage(bullets[i].getImage(), bullets[i].getX(), bullets[i].getY(), this);
+			}
 		}
 	}
 
@@ -171,7 +172,7 @@ public class MainPanel extends JPanel {
 		g.setFont(font);
 		g.setColor(Color.GRAY);
 		g.drawString("SCORE: " + score, 2, 20);
-		g.drawString("LIFE: " + hero.getLife(), 2, 40);
+		g.drawString("LIFE: " + (hero.getLife() < 0 ? 0 : hero.getLife()), 2, 40);
 		// g.drawString(" FIRE: ", 2, 60);
 		// g.drawString("SPEED: ", 2, 80);
 	}
@@ -283,15 +284,21 @@ public class MainPanel extends JPanel {
 	 * 生成敌方飞机
 	 */
 	protected void enterAction() {
-		if (planeIndex++ % 30 != 0) {
+		if (planeIndex++ % 30 != 0) {// 每30帧生成一个敌方飞机
 			return;
 		}
 		EnemyPlane fi;
-		int index = Setting.RND.nextInt(20);
-		if (index < 2) {
-			fi = new EnemyPlane(true);
+		if (score > 5 && score % Setting.DIFFICULTY < 2) {
+			fi = new EnemyPlane(3, (int) (score / 500) * 4);
 		} else {
-			fi = new EnemyPlane(false);
+			double rnd = Math.random();
+			if (rnd < 0.05) {// 奖励飞机
+				fi = new EnemyPlane(0, 3);
+			} else if (rnd > 0.7) {
+				fi = new EnemyPlane(2, (((int) (score / Setting.DIFFICULTY)) + 1) * 2);
+			} else {
+				fi = new EnemyPlane(1, ((int) (score / Setting.DIFFICULTY)) + 1);
+			}
 		}
 
 		enemyPlanes = Arrays.copyOf(enemyPlanes, enemyPlanes.length + 1);
@@ -315,23 +322,37 @@ public class MainPanel extends JPanel {
 	}
 
 	/**
-	 * 射击 生成英雄飞机的子弹和敌方飞机的子弹
+	 * 生成英雄飞机的子弹和敌方飞机的子弹
 	 */
 	protected void shootAction() {
 		heroBulletCreateSpeed = hero.getDoubleFireSpeed() > 0 ? Setting.SPEED_HERO_BULLET_CREATE / 2
 				: Setting.SPEED_HERO_BULLET_CREATE;
-		if (bulletIndex++ % heroBulletCreateSpeed != 0) {
-			return;
+		if (bulletIndex++ % heroBulletCreateSpeed == 0) {
+			Bullet[] bs = hero.shootBullet();
+			bullets = Arrays.copyOf(bullets, bullets.length + bs.length);
+			System.arraycopy(bs, 0, bullets, bullets.length - bs.length, bs.length);
 		}
-		Bullet[] bs = hero.shootBullet();
-		bullets = Arrays.copyOf(bullets, bullets.length + bs.length);
-		System.arraycopy(bs, 0, bullets, bullets.length - bs.length, bs.length);
 
 		int index = 0;
-		if ((bulletIndex - 1) % 120 == 0) {
-			bs = new Bullet[enemyPlanes.length];
+		// TODO 改为一个For循环，增加效率
+		if ((bulletIndex - 1) % Setting.SPEED_ENEMY_BULLET_CREATE == 0
+				|| (bulletIndex - 1) % Setting.SPEED_ENEMY_BULLET_CREATE == 10) {// Boss连续发射两次子弹
+			Bullet[] bs = new Bullet[enemyPlanes.length];
 			for (int i = 0; i < enemyPlanes.length; i++) {
-				if (enemyPlanes[i].isPowerfulPlane()) {
+				if (enemyPlanes[i].getPlaneType() == 3) {
+					bs[index] = enemyPlanes[i].shootBullet();
+					index++;
+				}
+			}
+			if (index > 0) {
+				bullets = Arrays.copyOf(bullets, bullets.length + index);
+				System.arraycopy(bs, 0, bullets, bullets.length - index, index);
+			}
+		}
+		if ((bulletIndex - 1) % (Setting.SPEED_ENEMY_BULLET_CREATE * 2) == 0) {
+			Bullet[] bs = new Bullet[enemyPlanes.length];
+			for (int i = 0; i < enemyPlanes.length; i++) {
+				if (enemyPlanes[i].getPlaneType() == 2) {
 					bs[index] = enemyPlanes[i].shootBullet();
 					index++;
 				}
@@ -355,7 +376,7 @@ public class MainPanel extends JPanel {
 		int index = 0;
 		for (int i = 0; i < bullets.length; i++) {
 			Bullet bullet = bullets[i];
-			if (!isHit(bullet, bullet.isHero())) {
+			if (bullet != null && !isHit(bullet, bullet.isHero())) {
 				bulletLives[index++] = bullet;
 			}
 		}
@@ -375,23 +396,27 @@ public class MainPanel extends JPanel {
 		EnemyPlane ep = null;
 		boolean isHit = false;
 		if (isHero) {
-			for (int i = 0; i < enemyPlanes.length; i++) {
+			goOut: for (int i = 0; i < enemyPlanes.length; i++) {
 				ep = enemyPlanes[i];
 				isHit = bullet.collisionDetection(ep);
 				if (isHit) {
-					if (ep.isPowerfulPlane()) {
-						Buff buff = new Buff((ep.getLeft() + ep.getRight()) / 2, (ep.getTop() + ep.getBottom()) / 2);
-						buffs = Arrays.copyOf(buffs, buffs.length + 1);
-						buffs[buffs.length - 1] = buff;
+					ep.subLife(bullet.damage);
+					if (ep.getLife() <= 0) {
+						if (ep.getPlaneType() == 0) {
+							Buff buff = new Buff((ep.getLeft() + ep.getRight()) / 2,
+									(ep.getTop() + ep.getBottom()) / 2);
+							buffs = Arrays.copyOf(buffs, buffs.length + 1);
+							buffs[buffs.length - 1] = buff;
+						}
+						deletePlanes(i);
 					}
-					deletePlanes(i);
-					break;
+					break goOut;
 				}
 			}
 		} else {
 			isHit = bullet.collisionDetection(hero);
 			if (isHit) {
-				hero.subLife();
+				hero.subLife(1);
 			}
 		}
 		return isHit;
@@ -434,7 +459,7 @@ public class MainPanel extends JPanel {
 		for (int i = 0; i < enemyPlanes.length; i++) {
 			EnemyPlane ep = enemyPlanes[i];
 			if (ep.collisionDetection(hero)) {
-				hero.subLife();
+				hero.subLife(3);
 				// 将被撞的飞机抹除
 				deletePlanes(i);
 			}
@@ -450,10 +475,10 @@ public class MainPanel extends JPanel {
 			if (buff.collisionDetection(hero)) {
 				switch (buff.getType()) {
 				case 0:
-					hero.setDoubleFire(40);
+					hero.addDoubleFire(Setting.HERO_INIT_DOUBLE);
 					break;
 				case 1:
-					hero.setDoubleFireSpeed(40);
+					hero.addDoubleFireSpeed(Setting.HERO_INIT_FIRE_SPEED);
 					break;
 				case 2:
 					hero.addLife(1);
@@ -471,7 +496,7 @@ public class MainPanel extends JPanel {
 	 * 判断游戏是否结束的事件
 	 */
 	protected void GameOverAction() {
-		if (hero.getLife() < 0) {
+		if (hero.getLife() <= 0) {
 			state = GAMEOVER;
 		}
 	}
@@ -483,7 +508,8 @@ public class MainPanel extends JPanel {
 	 *            数组下标
 	 */
 	private void deletePlanes(int i) {
-		score += enemyPlanes[i].isPowerfulPlane() ? 5 : 2;
+		// TODO 添加死亡动画
+		score += enemyPlanes[i].getScore();
 		enemyPlanes[i] = enemyPlanes[enemyPlanes.length - 1];
 		enemyPlanes = Arrays.copyOf(enemyPlanes, enemyPlanes.length - 1);
 	}

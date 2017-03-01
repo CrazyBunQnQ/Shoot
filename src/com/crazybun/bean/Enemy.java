@@ -6,11 +6,19 @@ package com.crazybun.bean;
  */
 public interface Enemy {
 	/**
-	 * 正常敌机分数
+	 * 中等敌机分数
 	 */
-	public static final int ENEMY_NORMAL_SCORE = 5;
+	public static final int ENEMY_NORMAL_SCORE = 3;
 	/**
 	 * 强力敌机分数
 	 */
-	public static final int ENEMY_HIGH_SCORE = 5;
+	public static final int ENEMY_AWARD_SCORE = 5;
+	/**
+	 * 小敌机分数
+	 */
+	public static final int ENEMY_SMALL_SCORE = 1;
+	/**
+	 * BOSS飞机分数
+	 */
+	public static final int ENEMY_BOSS_SCORE = 8;
 }
