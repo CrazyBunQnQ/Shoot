@@ -339,25 +339,14 @@ public class MainPanel extends JPanel {
 		}
 
 		int index = 0;
-		// TODO 改为一个For循环，增加效率
-		if ((bulletIndex - 1) % Setting.SPEED_ENEMY_BULLET_CREATE == 0
-				|| (bulletIndex - 1) % Setting.SPEED_ENEMY_BULLET_CREATE == 10) {// Boss连续发射两次子弹
+		if ((bulletIndex - 1) % Setting.SPEED_ENEMY_BULLET_CREATE == 0|| (bulletIndex - 1) % Setting.SPEED_ENEMY_BULLET_CREATE == 10){
 			Bullet[] bs = new Bullet[enemyPlanes.length];
 			for (int i = 0; i < enemyPlanes.length; i++) {
 				if (enemyPlanes[i].getPlaneType() == 3) {
 					bs[index] = enemyPlanes[i].shootBullet();
 					index++;
 				}
-			}
-			if (index > 0) {
-				bullets = Arrays.copyOf(bullets, bullets.length + index);
-				System.arraycopy(bs, 0, bullets, bullets.length - index, index);
-			}
-		}
-		if ((bulletIndex - 1) % (Setting.SPEED_ENEMY_BULLET_CREATE * 2) == 0) {
-			Bullet[] bs = new Bullet[enemyPlanes.length];
-			for (int i = 0; i < enemyPlanes.length; i++) {
-				if (enemyPlanes[i].getPlaneType() == 2) {
+				if ((bulletIndex - 1) % (Setting.SPEED_ENEMY_BULLET_CREATE * 2) == 0 && enemyPlanes[i].getPlaneType() == 2) {
 					bs[index] = enemyPlanes[i].shootBullet();
 					index++;
 				}
