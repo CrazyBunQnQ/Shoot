@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
  * @author CrazyBun
  */
 public class Setting {
+	//=========================常量======================
 	/**
 	 * 主窗口的宽
 	 */
@@ -19,37 +20,10 @@ public class Setting {
 	 * 主窗口的高
 	 */
 	public static final int FRAME_HEIGHT = 660;
-
-	// 图片资源
-	public static Image backGround;
-	public static Image gameStart;
-	public static Image gameOver;
-	public static Image gamePause;
-	public static Image heroPlane1;
-	public static Image smallPlane;
-	public static Image midPlane;
-	public static Image bossPlane;
-	public static Image heroBullet;
-	public static Image enemyBullet;
-	public static Image awardPlane;
-	public static Image buff1;
-	public static Image buff2;
-	public static Image buff3;
-
-	// 图片数组
-	public static Image[] smallDeath;
-	public static Image[] midDeath;
-	public static Image[] bossDeath;
-	public static Image[] heros_normal;
-	public static Image[] heros_death;
-	
-
-	
-	//=========================常量======================
 	/**
 	 * 游戏难度提升分段，每DIFFICULTY分提升一个难度
 	 */
-	public static final int DIFFICULTY = 100;
+	public static final int INTERVAL = 100;
 	/**
 	 * 随机数
 	 */
@@ -97,14 +71,37 @@ public class Setting {
 	 * 双倍攻击
 	 */
 	public static final int HERO_INIT_DOUBLE = 100;
-
+	
 	/**
 	 * 双倍射速
 	 */
 	public static final int HERO_INIT_FIRE_SPEED = 100;
 
+	//=====================静态变量===================
+	// 图片资源
+	public static Image backGround;
+	public static Image gameStart;
+	public static Image gameOver;
+	public static Image gamePause;
+	public static Image heroPlane1;
+	public static Image smallPlane;
+	public static Image midPlane;
+	public static Image bossPlane;
+	public static Image heroBullet;
+	public static Image enemyBullet;
+	public static Image awardPlane;
+	public static Image buff1;
+	public static Image buff2;
+	public static Image buff3;
+	// 图片数组
+	public static Image[] smallDeath;
+	public static Image[] midDeath;
+	public static Image[] bossDeath;
+	public static Image[] heros_normal;
+	public static Image[] heros_death;
+	
 	/**
-	 * 静态代码块，只执行一次
+	 * 静态代码块，只执行一次,初始化图片资源
 	 */
 	static {
 		backGround = new ImageIcon("images/backGround.gif").getImage();

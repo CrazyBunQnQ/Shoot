@@ -35,6 +35,7 @@ public class Bullet extends FlyItems {
 		this.x = x - width / 2;
 		this.y = y;
 		speed = byHero ? Setting.SPEED_HERO_BULLET_MOVE : Setting.SPEED_ENEMY_BULLET;
+		damage = 1;
 	}
 
 	/**

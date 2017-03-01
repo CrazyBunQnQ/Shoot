@@ -71,13 +71,13 @@ public class EnemyPlane extends FlyItems implements Enemy {
 	 */
 	@Override
 	public void move() {
-		if (planeType == 3) {//Boss飞机移动方式
+		if (planeType == 3) {// Boss飞机移动方式
 			x = backX ? x - speed : x + speed;
 			y = backY ? y - speed : y + speed;
-		} else if (planeType == 2) {//中等飞机移动方式
+		} else if (planeType == 2) {// 中等飞机移动方式
 			x = backX ? x - speed : x + speed;
 			y += speed;
-		} else {//其他飞机移动方式
+		} else {// 其他飞机移动方式
 			y += speed;
 		}
 	}
@@ -88,6 +88,9 @@ public class EnemyPlane extends FlyItems implements Enemy {
 	@Override
 	public boolean outOfBound() {
 		backX = x < 0 ? false : (x > Setting.FRAME_WIDTH - width ? true : backX);
+		if (planeType == 3) {//Boss飞机只在屏幕上半部分活动，并且不死不消失
+			backY = y < 0 ? false : (y > Setting.FRAME_HEIGHT / 2 - height ? true : backY);
+		}
 		return super.outOfBound();
 	}
 
@@ -97,11 +100,11 @@ public class EnemyPlane extends FlyItems implements Enemy {
 	 * @return Bullet
 	 */
 	public Bullet shootBullet() {
-		if (planeType == 2) {//中等飞机发射子弹方式
+		if (planeType == 2) {// 中等飞机发射子弹方式
 			return new Bullet(x + width / 2, this.y + height / 2, false);
 		}
-		if (planeType == 3) {//Boss飞机发射子弹方式
-//			return new Bullet(x + width / 2, this.y + height / 2, false);
+		if (planeType == 3) {// Boss飞机发射子弹方式
+			// return new Bullet(x + width / 2, this.y + height / 2, false);
 		}
 		return null;
 	}

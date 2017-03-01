@@ -65,6 +65,8 @@ public class MainPanel extends JPanel {
 	 * 获得的分数
 	 */
 	private int score;
+
+	private int difficulty;
 	/**
 	 * 游戏的状态
 	 */
@@ -87,6 +89,7 @@ public class MainPanel extends JPanel {
 		bullets = new Bullet[] {};
 		buffs = new Buff[] {};
 		score = 0;
+		difficulty = 1;
 		heroBulletCreateSpeed = Setting.SPEED_HERO_BULLET_CREATE;
 	}
 
@@ -288,16 +291,18 @@ public class MainPanel extends JPanel {
 			return;
 		}
 		EnemyPlane fi;
-		if (score > 5 && score % Setting.DIFFICULTY < 2) {
-			fi = new EnemyPlane(3, (int) (score / 500) * 4);
+		int i = ((int) (score / Setting.INTERVAL)) + 1;
+		if (score > Setting.INTERVAL && i - 1 >= difficulty) {// Boss飞机
+			fi = new EnemyPlane(3, i * 4);
+			difficulty++;
 		} else {
 			double rnd = Math.random();
 			if (rnd < 0.05) {// 奖励飞机
 				fi = new EnemyPlane(0, 3);
-			} else if (rnd > 0.7) {
-				fi = new EnemyPlane(2, (((int) (score / Setting.DIFFICULTY)) + 1) * 2);
-			} else {
-				fi = new EnemyPlane(1, ((int) (score / Setting.DIFFICULTY)) + 1);
+			} else if (rnd > 0.75) {// 中型飞机
+				fi = new EnemyPlane(2, i * 2);
+			} else {// 小型飞机
+				fi = new EnemyPlane(1, i);
 			}
 		}
 
@@ -357,14 +362,10 @@ public class MainPanel extends JPanel {
 					index++;
 				}
 			}
-			// System.out.println(bullets.length + bullets[bullets.length -
-			// 1].toString());
 			if (index > 0) {
 				bullets = Arrays.copyOf(bullets, bullets.length + index);
 				System.arraycopy(bs, 0, bullets, bullets.length - index, index);
 			}
-			// System.out.println(bullets.length + bullets[bullets.length -
-			// 1].toString());
 		}
 	}
 
