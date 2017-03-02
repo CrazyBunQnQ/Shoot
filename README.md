@@ -27,6 +27,7 @@
 - 补给包死亡画面
 - 播放声音
 - 优化难度机制
+- 敌方射击机制：改齐射为各自独立射击
 
 ### 已知Bug ###
 - ~~提升难度时出现的Boss数量应为一个，实际上随即出现甚至不出现...嗯 这是一个简单又逗比的bug~~
@@ -35,13 +36,13 @@
 ### 效果演示 ###
 #### 死亡效果： ####
 
-![死亡](http://wx1.sinaimg.cn/mw690/a6e9cb00ly1fd8tzjgbtbg20aq0i4hdt.gif)
+![死亡效果](http://wx1.sinaimg.cn/mw690/a6e9cb00ly1fd8tzjgbtbg20aq0i4hdt.gif)
 
 #### 火力加倍 buff效果： ####
-![火力加倍 buff效果](http://wx4.sinaimg.cn/mw690/a6e9cb00ly1fd8tzf58nkg20aq0i4npd.gif)
+![火力加倍 buff 效果](http://wx4.sinaimg.cn/mw690/a6e9cb00ly1fd8tzf58nkg20aq0i4npd.gif)
 
 #### 攻速加倍 buff效果： ####
-![攻速加倍 buff效果](http://wx4.sinaimg.cn/mw690/a6e9cb00ly1fd8tzdfd2hg20aq0i44qp.gif)
+![攻速加倍 buff 效果](http://wx4.sinaimg.cn/mw690/a6e9cb00ly1fd8tzdfd2hg20aq0i44qp.gif)
 
 #### 双 buff 附体效果： ####
 ![双 buff 附体效果](http://wx2.sinaimg.cn/mw690/a6e9cb00ly1fd8tzhu6m5g20aq0i41kz.gif)
