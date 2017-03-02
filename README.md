@@ -4,7 +4,7 @@
 
 ### 现有功能： ###
 #### 一、四种敌机类型: ####
-- 奖励飞机：击杀后随即掉落buff，血量固定为 3
+- 奖励飞机：击杀后随机掉落buff，血量固定为 3
 - 小型飞机：不会发射子弹，基础血量为 1
 - 中型飞机：会发射子弹，基础血量为 2
 - 大型飞机：一次性发射6发子弹，基础血量为 4，击杀后增加一条命
@@ -31,6 +31,23 @@
 ### 已知Bug ###
 - ~~提升难度时出现的Boss数量应为一个，实际上随即出现甚至不出现...嗯 这是一个简单又逗比的bug~~
 - ~~已添加死亡动画，但是动画不显示...~~
+
+### 效果演示 ###
+#### 死亡效果： ####
+
+![死亡](http://wx1.sinaimg.cn/mw690/a6e9cb00ly1fd8tzjgbtbg20aq0i4hdt.gif)
+
+#### 火力加倍 buff效果： ####
+![火力加倍 buff效果](http://wx4.sinaimg.cn/mw690/a6e9cb00ly1fd8tzf58nkg20aq0i4npd.gif)
+
+#### 攻速加倍 buff效果： ####
+![攻速加倍 buff效果](http://wx4.sinaimg.cn/mw690/a6e9cb00ly1fd8tzdfd2hg20aq0i44qp.gif)
+
+#### 双 buff 附体效果： ####
+![双 buff 附体效果](http://wx2.sinaimg.cn/mw690/a6e9cb00ly1fd8tzhu6m5g20aq0i41kz.gif)
+
+#### 抗打的 Boss ####
+![抗打的 Boss](http://wx1.sinaimg.cn/mw690/a6e9cb00ly1fd8tzc6xgyg20aq0i44qr.gif)
 
 >欢迎各位大神来提bug！
 *目前功能还很少，还在完善中...*
