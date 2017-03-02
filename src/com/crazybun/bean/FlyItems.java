@@ -47,6 +47,10 @@ public abstract class FlyItems {
 	 * 是否死亡
 	 */
 	protected boolean death;
+	/**
+	 * 死亡计数器
+	 */
+	protected int deathIndex;
 
 	// abstract静态变量或方法，在当前类中不设置具体的值或方法体，由子类来实现
 	/**

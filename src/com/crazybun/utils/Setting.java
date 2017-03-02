@@ -92,7 +92,6 @@ public class Setting {
 	public static Image awardPlane;
 	public static Image buff1;
 	public static Image buff2;
-	public static Image buff3;
 	// 图片数组
 	public static Image[] smallDeath;
 	public static Image[] midDeath;

@@ -83,6 +83,7 @@ public class EnemyPlane extends FlyItems implements Enemy {
 		this.backY = false;
 		this.life = life;
 		this.death = false;
+		this.deathIndex = 5;
 	}
 
 	/**
@@ -90,23 +91,29 @@ public class EnemyPlane extends FlyItems implements Enemy {
 	 */
 	@Override
 	public void move() {
-		if (planeType == 3) {// Boss飞机移动方式
-			x = backX ? x - speed : x + speed;
-			y = backY ? y - speed : y + speed;
-		} else if (planeType == 2) {// 中等飞机移动方式
-			if (y <= Setting.FRAME_HEIGHT / 2) {
+		if (life > 0) {
+			if (planeType == 3) {// Boss飞机移动方式
 				x = backX ? x - speed : x + speed;
+				y = backY ? y - speed : y + speed;
+			} else if (planeType == 2) {// 中等飞机移动方式
+				if (y <= Setting.FRAME_HEIGHT / 2) {
+					x = backX ? x - speed : x + speed;
+				}
+				y += speed;
+			} else {// 其他飞机移动方式
+				y += speed;
 			}
-			y += speed;
-		} else {// 其他飞机移动方式
-			y += speed;
 		}
 		if (life <= 0 && !death) {
 			if (planeType == 0) {
 				death = true;
 			} else {
 				this.image = deathImages[deathImages.length - imageNum];
-				imageNum--;
+				deathIndex--;
+				if (deathIndex == 0) {
+					imageNum--;
+					deathIndex = 5;
+				}
 				if (imageNum < 1) {
 					death = true;
 				}

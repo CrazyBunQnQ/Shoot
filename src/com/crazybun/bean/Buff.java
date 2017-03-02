@@ -11,7 +11,7 @@ public class Buff extends FlyItems implements Award {
 	/**
 	 * buff类型
 	 */
-	private int type;
+	private double type;
 	// 控制buff移动方向
 	private boolean backX;
 	private boolean backY;
@@ -20,20 +20,8 @@ public class Buff extends FlyItems implements Award {
 		/**
 		 * 奖励类型随机
 		 */
-		type = Setting.RND.nextInt(Award.TOTAL_AWARD_TYPES);
-		switch (type) {
-		case 0:
-			image = Setting.buff1;
-			break;
-		case 1:
-			image = Setting.buff2;
-			break;
-		case 2:
-			image = Setting.buff3;
-			break;
-		default:
-			break;
-		}
+		type = Math.random();
+		image = type < 0.5 ? Setting.buff1 : Setting.buff2;
 		width = image.getWidth(null);
 		height = image.getHeight(null);
 		this.x = x;
@@ -66,9 +54,9 @@ public class Buff extends FlyItems implements Award {
 	/**
 	 * 获取buff类型
 	 * 
-	 * @return int
+	 * @return double
 	 */
-	public int getType() {
+	public double getType() {
 		return type;
 	}
 }

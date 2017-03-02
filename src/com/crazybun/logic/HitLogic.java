@@ -70,18 +70,10 @@ public class HitLogic {
 		for (int i = 0; i < MainPanel.buffs.length; i++) {
 			Buff buff = MainPanel.buffs[i];
 			if (buff.collisionDetection(MainPanel.hero)) {
-				switch (buff.getType()) {
-				case 0:
+				if (buff.getType() < 0.5) {
 					MainPanel.hero.addDoubleFire(Setting.HERO_INIT_DOUBLE);
-					break;
-				case 1:
+				} else {
 					MainPanel.hero.addDoubleFireSpeed(Setting.HERO_INIT_FIRE_SPEED);
-					break;
-				case 2:
-					MainPanel.hero.addLife(1);
-					break;
-				default:
-					break;
 				}
 				MainPanel.buffs[i] = MainPanel.buffs[MainPanel.buffs.length - 1];
 				MainPanel.buffs = Arrays.copyOf(MainPanel.buffs, MainPanel.buffs.length - 1);

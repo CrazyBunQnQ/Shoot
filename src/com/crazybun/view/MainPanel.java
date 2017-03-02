@@ -130,6 +130,9 @@ public class MainPanel extends JPanel {
 	 * @param g
 	 */
 	private void paintPlanes(Graphics g) {
+		for (EnemyPlane ep : deathPlanes) {
+			g.drawImage(ep.getImage(), ep.getX(), ep.getY(), this);
+		}
 		for (int i = 0; i < enemyPlanes.length; i++) {
 			FlyItems fi = enemyPlanes[i];
 			g.drawImage(fi.getImage(), fi.getX(), fi.getY(), this);
