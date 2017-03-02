@@ -67,6 +67,9 @@ public class MainPanel extends JPanel {
 	 */
 	public static int score;
 
+	/**
+	 * 游戏难度等级
+	 */
 	public static int difficulty;
 	/**
 	 * 游戏的状态
@@ -164,8 +167,16 @@ public class MainPanel extends JPanel {
 		g.setColor(Color.GRAY);
 		g.drawString("SCORE: " + score, 2, 20);
 		g.drawString("LIFE: " + (hero.getLife() < 0 ? 0 : hero.getLife()), 2, 40);
-		// g.drawString(" FIRE: ", 2, 60);
-		// g.drawString("SPEED: ", 2, 80);
+		g.drawString("DIFFICULTY: " + difficulty, 270, 20);
+		if (hero.getDoubleFire() > 0) {
+			if (hero.getDoubleFireSpeed() > 0) {
+				g.drawString("FIRE AND SPEED UP!", 2, 60);
+			} else {
+				g.drawString("FIRE UP", 2, 60);
+			}
+		} else if (hero.getDoubleFireSpeed() > 0) {
+			g.drawString("SPEED UP", 2, 60);
+		}
 	}
 
 	/**

@@ -51,11 +51,11 @@ public class Setting {
 	/*
 	 * 我方子弹速度
 	 */
-	public static final int SPEED_HERO_BULLET_MOVE = 8;
+	public static final int SPEED_HERO_BULLET_MOVE = 14;
 	/**
 	 * 我方子弹发射频率（越小越快）
 	 */
-	public static final int SPEED_HERO_BULLET_CREATE = 15;
+	public static final int SPEED_HERO_BULLET_CREATE = 10;
 	/**
 	 * 敌方飞机子弹发射频率（越小越快）
 	 */
