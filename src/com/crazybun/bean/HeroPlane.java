@@ -1,5 +1,7 @@
 package com.crazybun.bean;
 
+import java.awt.Image;
+
 import com.crazybun.utils.Setting;
 
 /**
@@ -11,6 +13,14 @@ public class HeroPlane extends FlyItems {
 	private int doubleFire;
 	private int doubleFireSpeed;
 	private int planeImage = 0;
+	/**
+	 * 死亡图片数组
+	 */
+	private Image[] deathImages;
+	/**
+	 * 资源图片数量
+	 */
+	private int imageNum;
 
 	/**
 	 * 英雄飞机的构造方法
@@ -24,6 +34,10 @@ public class HeroPlane extends FlyItems {
 		life = Setting.HERO_INIT_LIFE;
 		doubleFire = 0;
 		doubleFireSpeed = 0;
+		deathImages = Setting.heros_death;
+		imageNum = deathImages.length - 1;
+		this.death = false;
+		this.deathIndex = 3;
 	}
 
 	/**
@@ -77,7 +91,21 @@ public class HeroPlane extends FlyItems {
 	 */
 	@Override
 	public void move() {
-		image = Setting.heros_normal[planeImage++ % 2];
+		if (life > 0) {
+			image = Setting.heros_normal[planeImage++ % 2];
+		} else {
+			if (!death) {
+				this.image = deathImages[deathImages.length - imageNum];
+				deathIndex--;
+				if (deathIndex == 0) {
+					imageNum--;
+					deathIndex = 3;
+				}
+				if (imageNum < 1) {
+					death = true;
+				}
+			}
+		}
 	}
 
 	/**
@@ -89,6 +117,9 @@ public class HeroPlane extends FlyItems {
 	 *            y坐标
 	 */
 	public void moveTo(int x, int y) {
+		if (life <= 0) {
+			return;
+		}
 		this.x = x - this.image.getWidth(null) / 2;
 		this.y = y - this.image.getHeight(null) / 2;
 	}
@@ -99,6 +130,9 @@ public class HeroPlane extends FlyItems {
 	 * @return
 	 */
 	public Bullet[] shootBullet() {
+		if (life <= 0) {
+			return new Bullet[0];
+		}
 		/**
 		 * 子弹相对于飞机的偏移量
 		 */

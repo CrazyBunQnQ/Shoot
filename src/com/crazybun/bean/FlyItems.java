@@ -117,6 +117,9 @@ public abstract class FlyItems {
 	 * @return int
 	 */
 	public int getLeft() {
+		if (image == null) {
+			return 0;
+		}
 		return this.x + this.image.getWidth(null) / 2 - this.width / 2;
 	}
 
@@ -126,6 +129,9 @@ public abstract class FlyItems {
 	 * @return int
 	 */
 	public int getRight() {
+		if (image == null) {
+			return 0;
+		}
 		return this.x + this.image.getWidth(null) / 2 + this.width / 2;
 	}
 
@@ -135,6 +141,9 @@ public abstract class FlyItems {
 	 * @return int
 	 */
 	public int getTop() {
+		if (image == null) {
+			return 0;
+		}
 		return this.y + this.image.getHeight(null) / 2 - this.height / 2;
 	}
 
@@ -144,6 +153,9 @@ public abstract class FlyItems {
 	 * @return int
 	 */
 	public int getBottom() {
+		if (image == null) {
+			return 0;
+		}
 		return this.y + this.image.getHeight(null) / 2 + this.height / 2;
 	}
 

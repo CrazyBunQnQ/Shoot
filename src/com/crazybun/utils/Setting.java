@@ -148,7 +148,8 @@ public class Setting {
 				new ImageIcon("images/heroDeath1.png").getImage(),
 				new ImageIcon("images/heroDeath2.png").getImage(),
 				new ImageIcon("images/heroDeath3.png").getImage(),
-				new ImageIcon("images/heroDeath4.png").getImage()
+				new ImageIcon("images/heroDeath4.png").getImage(),
+				null,null
 		};
 		
 	}

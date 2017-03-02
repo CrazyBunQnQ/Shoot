@@ -308,7 +308,7 @@ public class MainPanel extends JPanel {
 	 * 判断游戏是否结束的事件
 	 */
 	protected void GameOverAction() {
-		if (hero.getLife() <= 0) {
+		if (hero.isDeath()) {
 			state = GAMEOVER;
 		}
 	}
