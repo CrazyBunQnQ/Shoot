@@ -1,6 +1,7 @@
 package com.crazybun.logic;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 import com.crazybun.bean.Bullet;
 import com.crazybun.bean.EnemyPlane;
@@ -12,6 +13,9 @@ public class ActionLogic {
 	 */
 	public static void move() {
 		MainPanel.hero.move();
+		for (EnemyPlane i : MainPanel.deathPlanes) {
+			i.move();
+		}
 		for (int i = 0; i < MainPanel.enemyPlanes.length; i++) {
 			MainPanel.enemyPlanes[i].move();
 		}
@@ -37,7 +41,7 @@ public class ActionLogic {
 		}
 		MainPanel.bullets = Arrays.copyOf(bulletLives, index);
 	}
-	
+
 	/**
 	 * 删除越界的物品 包括越界的子弹和飞机
 	 */
@@ -67,17 +71,27 @@ public class ActionLogic {
 			MainPanel.buffs[i].outOfBound();
 		}
 	}
-	
+
 	/**
 	 * 删除数组中的飞机
 	 * 
 	 * @param i
 	 *            数组下标
 	 */
-	public static void deleteEnemyPlanes(int i) {
+	public static void deleteEnemyPlanesInArr(int i) {
 		// TODO 添加死亡动画
+		MainPanel.deathPlanes.add(MainPanel.enemyPlanes[i]);
 		MainPanel.score += MainPanel.enemyPlanes[i].getScore();
 		MainPanel.enemyPlanes[i] = MainPanel.enemyPlanes[MainPanel.enemyPlanes.length - 1];
 		MainPanel.enemyPlanes = Arrays.copyOf(MainPanel.enemyPlanes, MainPanel.enemyPlanes.length - 1);
+	}
+
+	public static void deleteEnemyPlanesInPanel() {
+		for (Iterator<EnemyPlane> i = MainPanel.deathPlanes.iterator(); i.hasNext();) {
+			EnemyPlane ep = i.next();
+			if (ep.isDeath()) {
+				i.remove();
+			}
+		}
 	}
 }

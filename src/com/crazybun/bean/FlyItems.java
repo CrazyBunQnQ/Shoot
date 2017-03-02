@@ -43,6 +43,10 @@ public abstract class FlyItems {
 	 * 物品的生命值
 	 */
 	protected int life;
+	/**
+	 * 是否死亡
+	 */
+	protected boolean death;
 
 	// abstract静态变量或方法，在当前类中不设置具体的值或方法体，由子类来实现
 	/**
@@ -57,6 +61,9 @@ public abstract class FlyItems {
 	 *            另一个飞行物品
 	 */
 	public boolean collisionDetection(FlyItems item) {
+		if (this.death || item.death) {
+			return false;
+		}
 		boolean RlL = this.getS() < item.getS() ? this.getRight() > item.getLeft() : item.getRight() > this.getLeft();
 		boolean RsR = this.getS() < item.getS() ? this.getRight() < item.getRight() : item.getRight() < this.getRight();
 		boolean TlT = this.getS() < item.getS() ? this.getTop() > item.getTop() : item.getTop() > this.getTop();
@@ -184,5 +191,13 @@ public abstract class FlyItems {
 	 */
 	public void subLife(int n) {
 		this.life -= n;
+	}
+	
+	/**
+	 * 物品是否死亡
+	 * @return
+	 */
+	public boolean isDeath(){
+		return death;
 	}
 }

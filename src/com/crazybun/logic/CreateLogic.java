@@ -51,7 +51,7 @@ public class CreateLogic {
 		int index = 0;
 		if ((MainPanel.bulletIndex - 1) % Setting.SPEED_ENEMY_BULLET_CREATE == 0
 				|| (MainPanel.bulletIndex - 1) % Setting.SPEED_ENEMY_BULLET_CREATE == 10|| (MainPanel.bulletIndex - 1) % Setting.SPEED_ENEMY_BULLET_CREATE == 20) {
-			Bullet[] bs = new Bullet[MainPanel.enemyPlanes.length];
+			Bullet[] bs = new Bullet[MainPanel.enemyPlanes.length + 6];//由于boss飞机一次性发射6发子弹，所以这里有下标越界的可能
 			for (int i = 0; i < MainPanel.enemyPlanes.length; i++) {
 				if (MainPanel.enemyPlanes[i].getPlaneType() == 3) {
 					Bullet[] boss = MainPanel.enemyPlanes[i].shootBullet();

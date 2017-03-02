@@ -33,7 +33,8 @@ public class HitLogic {
 						} else if (ep.getPlaneType() == 3) {// 击杀boss增加一条命
 							MainPanel.hero.addLife(1);
 						}
-						ActionLogic.deleteEnemyPlanes(i);
+						MainPanel.deathPlanes.add(ep);
+						ActionLogic.deleteEnemyPlanesInArr(i);
 					}
 					break goOut;
 				}
@@ -56,7 +57,8 @@ public class HitLogic {
 			if (ep.collisionDetection(MainPanel.hero)) {
 				MainPanel.hero.subLife(3);
 				// 将被撞的飞机抹除
-				ActionLogic.deleteEnemyPlanes(i);
+				MainPanel.deathPlanes.add(ep);
+				ActionLogic.deleteEnemyPlanesInArr(i);
 			}
 		}
 	}

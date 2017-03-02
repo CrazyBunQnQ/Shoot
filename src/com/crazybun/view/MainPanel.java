@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -50,6 +51,10 @@ public class MainPanel extends JPanel {
 	 * 所有buff的数组
 	 */
 	public static Buff[] buffs;
+	/**
+	 * 正在死亡的飞机，等待删除的飞机
+	 */
+	public static ArrayList<EnemyPlane> deathPlanes;
 	/**
 	 * 计时器
 	 */
@@ -210,6 +215,7 @@ public class MainPanel extends JPanel {
 		enemyPlanes = new EnemyPlane[] {};
 		bullets = new Bullet[] {};
 		buffs = new Buff[] {};
+		deathPlanes = new ArrayList<>();
 		score = 0;
 		difficulty = 1;
 		heroBulletCreateSpeed = Setting.SPEED_HERO_BULLET_CREATE;
@@ -282,6 +288,7 @@ public class MainPanel extends JPanel {
 					CreateLogic.createBullets();
 					ActionLogic.hitByBullet();
 					ActionLogic.deleteItems();
+					ActionLogic.deleteEnemyPlanesInPanel();
 					HitLogic.heroHitEnemyPlane();
 					HitLogic.getBuff();
 					GameOverAction();

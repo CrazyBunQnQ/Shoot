@@ -1,5 +1,7 @@
 package com.crazybun.bean;
 
+import java.awt.Image;
+
 import com.crazybun.utils.Setting;
 
 /**
@@ -24,6 +26,14 @@ public class EnemyPlane extends FlyItems implements Enemy {
 	 * 敌方飞机垂直移动方向，是否返回
 	 */
 	private boolean backY;
+	/**
+	 * 死亡图片数组
+	 */
+	private Image[] deathImages;
+	/**
+	 * 资源图片数量
+	 */
+	private int imageNum;
 
 	/**
 	 * 构造敌方飞机
@@ -38,21 +48,29 @@ public class EnemyPlane extends FlyItems implements Enemy {
 			image = Setting.awardPlane;
 			speed = Setting.SPEED_AWARDPLANE;
 			score = Enemy.ENEMY_AWARD_SCORE;
+			deathImages = null;
+			imageNum = 0;
 			break;
 		case 1:
 			image = Setting.smallPlane;
 			speed = Setting.SPEED_ENEMYPLANE;
 			score = Enemy.ENEMY_SMALL_SCORE;
+			deathImages = Setting.smallDeath;
+			imageNum = deathImages.length - 1;
 			break;
 		case 2:
 			image = Setting.midPlane;
 			speed = Setting.SPEED_ENEMYPLANE;
 			score = Enemy.ENEMY_NORMAL_SCORE;
+			deathImages = Setting.midDeath;
+			imageNum = deathImages.length - 1;
 			break;
 		case 3:
 			image = Setting.bossPlane;
 			speed = Setting.SPEED_BOSSPLANE;
 			score = Enemy.ENEMY_BOSS_SCORE;
+			deathImages = Setting.bossDeath;
+			imageNum = deathImages.length - 1;
 			break;
 		default:
 			break;
@@ -64,6 +82,7 @@ public class EnemyPlane extends FlyItems implements Enemy {
 		this.backX = Math.random() < 0.5f ? true : false;
 		this.backY = false;
 		this.life = life;
+		this.death = false;
 	}
 
 	/**
@@ -75,10 +94,23 @@ public class EnemyPlane extends FlyItems implements Enemy {
 			x = backX ? x - speed : x + speed;
 			y = backY ? y - speed : y + speed;
 		} else if (planeType == 2) {// 中等飞机移动方式
-			x = backX ? x - speed : x + speed;
+			if (y <= Setting.FRAME_HEIGHT / 2) {
+				x = backX ? x - speed : x + speed;
+			}
 			y += speed;
 		} else {// 其他飞机移动方式
 			y += speed;
+		}
+		if (life <= 0 && !death) {
+			if (planeType == 0) {
+				death = true;
+			} else {
+				this.image = deathImages[deathImages.length - imageNum];
+				imageNum--;
+				if (imageNum < 1) {
+					death = true;
+				}
+			}
 		}
 	}
 

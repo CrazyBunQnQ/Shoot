@@ -135,14 +135,14 @@ public class Setting {
 		};
 		bossDeath = new Image[]{
 				bossPlane,
-				new ImageIcon("images/midPlane2.png").getImage(),
-				new ImageIcon("images/midPlane3.png").getImage(),
-				new ImageIcon("images/midPlane4.png").getImage(),
-				new ImageIcon("images/midPlane5.png").getImage(),
-				new ImageIcon("images/midPlane6.png").getImage(),
-				new ImageIcon("images/midPlane7.png").getImage(),
-				new ImageIcon("images/midPlane8.png").getImage(),
-				new ImageIcon("images/midPlane9.png").getImage()
+				new ImageIcon("images/bossPlane2.png").getImage(),
+				new ImageIcon("images/bossPlane3.png").getImage(),
+				new ImageIcon("images/bossPlane4.png").getImage(),
+				new ImageIcon("images/bossPlane5.png").getImage(),
+				new ImageIcon("images/bossPlane6.png").getImage(),
+				new ImageIcon("images/bossPlane7.png").getImage(),
+				new ImageIcon("images/bossPlane8.png").getImage(),
+				new ImageIcon("images/bossPlane9.png").getImage()
 		};
 		heros_normal = new Image[]{heroPlane1,new ImageIcon("images/heroPlane2.png").getImage()};
 		heros_death = new Image[]{
