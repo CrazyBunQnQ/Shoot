@@ -50,16 +50,19 @@ public class CreateLogic {
 
 		int index = 0;
 		if ((MainPanel.bulletIndex - 1) % Setting.SPEED_ENEMY_BULLET_CREATE == 0
-				|| (MainPanel.bulletIndex - 1) % Setting.SPEED_ENEMY_BULLET_CREATE == 10) {
+				|| (MainPanel.bulletIndex - 1) % Setting.SPEED_ENEMY_BULLET_CREATE == 10|| (MainPanel.bulletIndex - 1) % Setting.SPEED_ENEMY_BULLET_CREATE == 20) {
 			Bullet[] bs = new Bullet[MainPanel.enemyPlanes.length];
 			for (int i = 0; i < MainPanel.enemyPlanes.length; i++) {
 				if (MainPanel.enemyPlanes[i].getPlaneType() == 3) {
-					bs[index] = MainPanel.enemyPlanes[i].shootBullet();
-					index++;
+					Bullet[] boss = MainPanel.enemyPlanes[i].shootBullet();
+					for (int j = 0; j < boss.length; j++) {
+						bs[index] = boss[j];
+						index++;
+					}
 				}
-				if ((MainPanel.bulletIndex - 1) % (Setting.SPEED_ENEMY_BULLET_CREATE * 2) == 0
+				if ((MainPanel.bulletIndex - 1) % (Setting.SPEED_ENEMY_BULLET_CREATE) == 0
 						&& MainPanel.enemyPlanes[i].getPlaneType() == 2) {
-					bs[index] = MainPanel.enemyPlanes[i].shootBullet();
+					bs[index] = MainPanel.enemyPlanes[i].shootBullet()[0];
 					index++;
 				}
 			}

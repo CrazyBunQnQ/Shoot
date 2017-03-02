@@ -47,11 +47,11 @@ public class Setting {
 	/**
 	 * 敌方子弹速度
 	 */
-	public static final int SPEED_ENEMY_BULLET = 3;
+	public static final int SPEED_ENEMY_BULLET = 4;
 	/*
 	 * 我方子弹速度
 	 */
-	public static final int SPEED_HERO_BULLET_MOVE = 6;
+	public static final int SPEED_HERO_BULLET_MOVE = 8;
 	/**
 	 * 我方子弹发射频率（越小越快）
 	 */
@@ -59,7 +59,7 @@ public class Setting {
 	/**
 	 * 敌方飞机子弹发射频率（越小越快）
 	 */
-	public static final int SPEED_ENEMY_BULLET_CREATE = 50;
+	public static final int SPEED_ENEMY_BULLET_CREATE = 120;
 	// 英雄飞机初始位置
 	public static final int HERO_INIT_X = FRAME_WIDTH / 2;
 	public static final int HERO_INIT_Y = FRAME_HEIGHT * 2 / 3;
