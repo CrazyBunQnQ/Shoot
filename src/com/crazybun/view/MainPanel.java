@@ -175,7 +175,7 @@ public class MainPanel extends JPanel {
 		g.setColor(Color.GRAY);
 		g.drawString("SCORE: " + score, 2, 20);
 		g.drawString("LIFE: " + (hero.getLife() < 0 ? 0 : hero.getLife()), 2, 40);
-		g.drawString("DIFFICULTY: " + difficulty, 270, 20);
+		g.drawString("DIFFICULTY: " + difficulty, 260, 20);
 		if (hero.getDoubleFire() > 0) {
 			if (hero.getDoubleFireSpeed() > 0) {
 				g.drawString("FIRE AND SPEED UP!", 2, 60);
