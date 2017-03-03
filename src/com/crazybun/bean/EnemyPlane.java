@@ -9,7 +9,7 @@ import com.crazybun.utils.Setting;
  * 
  * @author CrazyBun
  */
-public class EnemyPlane extends FlyItems implements Enemy {
+public class EnemyPlane extends FlyObjects implements Enemy {
 	/**
 	 * 敌方飞机类型，0：奖励飞机， 1 小飞机，2中型飞机，3Boss飞机
 	 */

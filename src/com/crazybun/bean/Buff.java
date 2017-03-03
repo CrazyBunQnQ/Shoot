@@ -7,7 +7,7 @@ import com.crazybun.utils.Setting;
  * 
  * @author CrazyBun
  */
-public class Buff extends FlyItems implements Award {
+public class Buff extends FlyObjects implements Award {
 	/**
 	 * buff类型
 	 */

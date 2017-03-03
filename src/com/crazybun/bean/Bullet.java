@@ -7,7 +7,7 @@ import com.crazybun.utils.Setting;
  * 
  * @author CrazyBun
  */
-public class Bullet extends FlyItems {
+public class Bullet extends FlyObjects {
 	/**
 	 * 是否来自英雄
 	 */

@@ -9,7 +9,7 @@ import com.crazybun.utils.Setting;
  * 
  * @author CrazyBun
  */
-public class HeroPlane extends FlyItems {
+public class HeroPlane extends FlyObjects {
 	private int doubleFire;
 	private int doubleFireSpeed;
 	private int planeImage = 0;

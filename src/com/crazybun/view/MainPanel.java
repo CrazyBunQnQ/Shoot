@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import com.crazybun.bean.Buff;
 import com.crazybun.bean.Bullet;
 import com.crazybun.bean.EnemyPlane;
-import com.crazybun.bean.FlyItems;
+import com.crazybun.bean.FlyObjects;
 import com.crazybun.bean.HeroPlane;
 import com.crazybun.logic.ActionLogic;
 import com.crazybun.logic.CreateLogic;
@@ -134,7 +134,7 @@ public class MainPanel extends JPanel {
 			g.drawImage(ep.getImage(), ep.getX(), ep.getY(), this);
 		}
 		for (int i = 0; i < enemyPlanes.length; i++) {
-			FlyItems fi = enemyPlanes[i];
+			FlyObjects fi = enemyPlanes[i];
 			g.drawImage(fi.getImage(), fi.getX(), fi.getY(), this);
 		}
 	}

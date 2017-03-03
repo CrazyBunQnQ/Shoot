@@ -9,7 +9,7 @@ import com.crazybun.utils.Setting;
  * 
  * @author CrazyBun
  */
-public abstract class FlyItems {
+public abstract class FlyObjects {
 	// portected 受保护的变量
 	/**
 	 * 飞行物品的图片
@@ -64,7 +64,7 @@ public abstract class FlyItems {
 	 * @param item
 	 *            另一个飞行物品
 	 */
-	public boolean collisionDetection(FlyItems item) {
+	public boolean collisionDetection(FlyObjects item) {
 		if (this.death || item.death) {
 			return false;
 		}
